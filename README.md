@@ -1,5 +1,8 @@
 # @nod/console
-A javascript syntax highlighted console replacement that outputs JSON with ES6/ES7 support.
+A javascript syntax highlighted console replacement that outputs JSON.
+
+Supports ES5, ES7, CommonJS, System, ES6 modules, and AMD.
+Works in node.js also should(?) work in browser.
 
 [![Join the chat][gitter-image]][gitter-url]
 [![GitHub tag][tag-image]][tag-url]
@@ -11,8 +14,6 @@ A javascript syntax highlighted console replacement that outputs JSON with ES6/E
 ```
 npm install --save @nod/console
 ```
-
-Works with ES5 and supports System, ES6 modules, CommonJS, AMD. Works in node and also should(?) work in browser.
 
 ## Examples:
 
