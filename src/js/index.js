@@ -1,6 +1,5 @@
 import 'source-map-support/register';
 import highlighter from 'cardinal';
-import stackTrace from 'stack-trace';
 import appRootPath from 'app-root-path';
 import json from 'circular-json';
 import path from 'path';
@@ -9,6 +8,7 @@ import { param, returns, Optional as optional, AnyOf as anyOf }
   from 'decorate-this';
 import autobind from 'autobind-decorator';
 import { Environment } from '@nod/environment';
+import _console from 'console';
 
 const PRIVATE = Symbol('PRIVATE');
 
@@ -47,10 +47,11 @@ export class Console {
   };
 
   defaults = {
-    enabled   : true,
-    logTypes  : false,
-    level     : 'warn',
-    highlight : highlighter.highlight.bind(highlighter),
+    enabled    : true,
+    logTypes   : false,
+    level      : 'warn',
+    highlight  : highlighter.highlight.bind(highlighter),
+    stackDepth : 7,
     standart,
     config,
     json
@@ -66,12 +67,13 @@ export class Console {
   }
 
   @param(optional({
-    standart  : optional(Object),
-    enabled   : optional(Boolean),
-    logTypes  : optional(Boolean),
-    config    : optional(Object),
-    highlight : optional(Object),
-    json      : optional(Object)
+    standart   : optional(Object),
+    enabled    : optional(Boolean),
+    logTypes   : optional(Boolean),
+    config     : optional(Object),
+    highlight  : optional(Object),
+    json       : optional(Object),
+    stackDepth : optional(Number)
   }))
   @returns(Object)
   setOptions(options = {}) {
@@ -130,16 +132,17 @@ export class Console {
     try {
       return this.options.highlight(params);
     } catch (error) {
-      this.output('error', error);
+      this.standart('error', 'error', error);
       return false;
     }
   }
 
   @param(Number)
   @returns(String)
-  stack(level = 6) {
-    return new Error().stack
-      .split(os.EOL)[level]
+  stack(stackDepth = this.options.stackDepth) {
+    var stack = new Error().stack;
+    return stack
+      .split(os.EOL)[stackDepth]
         .replace("\t", '')
         .trim();
   }
