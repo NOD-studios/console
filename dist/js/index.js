@@ -1,6 +1,7 @@
 import 'source-map-support/register';
 import highlighter from 'cardinal';
 import stackTrace from 'stack-trace';
+import appRootPath from 'app-root-path';
 import json from 'circular-json';
 import path from 'path';
 import os from 'os';
@@ -10,6 +11,7 @@ import autobind from 'autobind-decorator';
 import { Environment } from '@nod/environment';
 
 const PRIVATE = Symbol('PRIVATE');
+
 let standart = {
   output : () => {},
   error  : () => {}
@@ -29,7 +31,7 @@ if (process) {
   });
 }
 
-export default class Console {
+export class Console {
   levels = {
     error : 1,
     warn  : 2,
@@ -43,10 +45,10 @@ export default class Console {
     logTypes  : false,
     level     : 'warn',
     highlight : highlighter.highlight.bind(highlighter),
+    standart,
     config    : {
       console : {}
     },
-    standart,
     json
   };
 
@@ -239,15 +241,11 @@ export default class Console {
   }
 }
 
-let environment = new Environment({
-  root : path.resolve('.'),
-  warn  : () => {},
-  info  : () => {},
-  debug : () => {}
-});
-export let console = new Console({
-  config : environment.config
-});
+export let console = new Console();
 export let { error, warn, info, log, debug } = console;
-environment.setOptions({ error, warn, info, log, debug });
-export default console;
+let environment = new Environment({
+  root : path.resolve(`${appRootPath}`),
+  error, warn, info, log, debug
+});
+console.options.config = environment.config;
+export default Console;
