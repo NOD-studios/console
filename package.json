@@ -4,7 +4,7 @@
   "description": "A syntax highlighted console replacement that outputs JSON with ES6/ES7 support.",
   "main": "index.js",
   "dependencies": {
-    "@nod/environment": "1.0.0",
+    "@nod/environment": "3.0.0",
     "app-root-path": "^1.0.0",
     "autobind-decorator": "^1.2.0",
     "cardinal": "^0.5.0",
