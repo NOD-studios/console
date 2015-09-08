@@ -1,6 +1,6 @@
 {
   "name": "@nod/console",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A syntax highlighted console replacement that outputs JSON with ES6/ES7 support.",
   "main": "index.js",
   "dependencies": {
@@ -37,7 +37,7 @@
     "clean": "gulp clean",
     "build": "gulp build",
     "watch": "gulp watch",
-    "version": "npm run build && git add -A && git commit -am '%m'",
+    "version": "npm run build && git add -A",
     "postversion": "npm publish",
     "prepublish": "npm run build && git add -A",
     "postpublish": "git push && git push --tags",
