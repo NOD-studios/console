@@ -131,10 +131,10 @@ All methods have strict type checking please check source code.
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://nod.st) by [NOD studios](http://nod.st)
 
 [logo-image]: ./image/logo.strap.png?raw=true
-[repo-url]: https://github.com/NOD-studios/node-console
-[david-url]: https://david-dm.org/NOD-studios/node-console
-[david-image]: https://david-dm.org/NOD-studios/node-console.svg
+[repo-url]: https://github.com/NOD-studios/console
+[david-url]: https://david-dm.org/NOD-studios/console
+[david-image]: https://david-dm.org/NOD-studios/console.svg
 [gitter-image]: https://img.shields.io/badge/GITTER-join%20chat-green.svg
 [gitter-url]: http://bit.ly/NOD-chat
-[tag-image]: https://img.shields.io/github/tag/NOD-studios/node-console.svg
-[tag-url]: https://github.com/NOD-studios/node-console/tags
+[tag-image]: https://img.shields.io/github/tag/NOD-studios/console.svg
+[tag-url]: https://github.com/NOD-studios/console/tags
