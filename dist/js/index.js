@@ -244,8 +244,7 @@ export class Console {
 export let console = new Console();
 export let { error, warn, info, log, debug } = console;
 let environment = new Environment({
-  root : path.resolve(`${appRootPath}`),
-  error, warn, info, log, debug
+  root : path.resolve(`${appRootPath}`)
 });
 console.options.config = environment.config;
 export default Console;
