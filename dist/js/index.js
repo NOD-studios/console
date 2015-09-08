@@ -1,5 +1,4 @@
 import 'source-map-support/register';
-import { Environment } from '@nod/environment';
 import highlighter from 'cardinal';
 import stackTrace from 'stack-trace';
 import json from 'circular-json';
@@ -8,6 +7,7 @@ import os from 'os';
 import { param, returns, Optional as optional, AnyOf as anyOf }
   from 'decorate-this';
 import autobind from 'autobind-decorator';
+import { Environment } from '@nod/environment';
 
 const PRIVATE = Symbol('PRIVATE');
 let standart = {
