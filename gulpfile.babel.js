@@ -56,11 +56,11 @@ gulp.task('build-commonjs', () => {
   let dest = path.join(paths.dist, 'commonjs');
   return gulp.src(paths.js)
     .pipe($.changed(dest))
-    // .pipe($.sourcemaps.init())
+    .pipe($.sourcemaps.init())
     .pipe($.babel(Object.assign({}, options.babel, {
       modules : 'common'
     })))
-    // .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest(dest));
 });
 
@@ -68,11 +68,11 @@ gulp.task('build-amd', () => {
   let dest = path.join(paths.dist, 'amd');
   return gulp.src(paths.js)
     .pipe($.changed(dest))
-    // .pipe($.sourcemaps.init())
+    .pipe($.sourcemaps.init())
     .pipe($.babel(Object.assign({}, options.babel, {
       modules : 'amd'
     })))
-    // .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest(dest));
 });
 
@@ -80,11 +80,11 @@ gulp.task('build-system', () => {
   let dest = path.join(paths.dist, 'system');
   return gulp.src(paths.js)
     .pipe($.changed(dest))
-    // .pipe($.sourcemaps.init())
+    .pipe($.sourcemaps.init())
     .pipe($.babel(Object.assign({}, options.babel, {
       modules : 'system'
     })))
-    // .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest(dest));
 });
 
@@ -105,8 +105,6 @@ gulp.task('build', ['lint'], (callback) => {
     callback
   );
 });
-
-
 
 gulp.task('watch', () => {
   return gulp
