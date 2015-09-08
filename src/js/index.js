@@ -41,7 +41,7 @@ export default class Console {
   defaults = {
     enabled   : true,
     logTypes  : false,
-    level     : 'debug',
+    level     : 'warn',
     highlight : highlighter.highlight.bind(highlighter),
     config    : {
       console : {}
