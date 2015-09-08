@@ -46,27 +46,6 @@ let console = new Console({
 console.debug(`Debugging the ${console.constructor.name}:`, console);
 ```
 
-## Options:
-```javascript
-console.options = { // this will auto merge options
-  enabled   : true, // disable and enable
-  logTypes  : false, // log variable types, ~var_dump
-  level     : 'debug', // debug < log < info < warn < error
-  highlight : , // syntax highlighter function
-  config    : {  // env configs
-    console : {
-      silent : false,
-      level : null
-    }
-  },
-  json      : () => {}, // JSON.stringify function
-  standart  : {
-    output : () => {}, // stdout function
-    error  : () => {}, // stderr function
-  }
-};
-```
-
 ```javascript
 require('@nod/console/dist/amd/js/index', function(console) {
   console.info('AMD and requirejs is so 2014.');
