@@ -126,9 +126,10 @@ All methods have strict type checking please check source code.
 
 [hey@nod.st](mailto:hey@nod.st)
 
-#     
+##### ...
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://nod.st) by [NOD studios](http://nod.st)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://nod.st)
+by [NOD studios](http://nod.st)
 
 [logo-image]: ./image/logo.strap.png?raw=true
 [repo-url]: https://github.com/NOD-studios/console
