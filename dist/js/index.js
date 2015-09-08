@@ -245,7 +245,7 @@ let environment = new Environment({
   info  : () => {},
   debug : () => {}
 });
-let console = new Console({
+export let console = new Console({
   config : environment.config
 });
 export let { error, warn, info, log, debug } = console;
