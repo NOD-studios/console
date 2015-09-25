@@ -1,0 +1,28 @@
+'use strict';
+
+var _Object$assign = require('babel-runtime/core-js/object/assign')['default'];
+
+var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
+
+exports.__esModule = true;
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _nodEnvironment = require('@nod/environment');
+
+var configConsole = new _nodEnvironment.Environment({
+  root: _path2['default'].resolve('.')
+}).config,
+    configRoot = new _nodEnvironment.Environment().config;
+
+var env = _Object$assign({
+  console: {}
+}, configRoot, configConsole);
+
+exports.env = env;
+env.console = _Object$assign(env.console, configRoot.console, configConsole.console);
+
+exports['default'] = env;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mdXJrYW50dW5hbGkvU2l0ZXMvX1NhbmRib3gvTk9EL2NvbnNvbGUvc3JjL2Vudi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztvQkFBaUIsTUFBTTs7Ozs4QkFDSyxrQkFBa0I7O0FBRTlDLElBQ0UsYUFBYSxHQUFHLEFBQUMsZ0NBQWdCO0FBQy9CLE1BQUksRUFBRyxrQkFBSyxPQUFPLENBQUMsR0FBRyxDQUFDO0NBQ3pCLENBQUMsQ0FBRSxNQUFNO0lBQ1YsVUFBVSxHQUFHLEFBQUMsaUNBQWlCLENBQUUsTUFBTSxDQUFDOztBQUVuQyxJQUFJLEdBQUcsR0FBRyxlQUFjO0FBQzdCLFNBQU8sRUFBRyxFQUFFO0NBQ2IsRUFBRSxVQUFVLEVBQUUsYUFBYSxDQUFDLENBQUM7OztBQUU5QixHQUFHLENBQUMsT0FBTyxHQUFHLGVBQ1osR0FBRyxDQUFDLE9BQU8sRUFBRSxVQUFVLENBQUMsT0FBTyxFQUFFLGFBQWEsQ0FBQyxPQUFPLENBQ3ZELENBQUM7O3FCQUVhLEdBQUciLCJmaWxlIjoiL1VzZXJzL2Z1cmthbnR1bmFsaS9TaXRlcy9fU2FuZGJveC9OT0QvY29uc29sZS9zcmMvZW52LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHBhdGggZnJvbSAncGF0aCc7XG5pbXBvcnQgeyBFbnZpcm9ubWVudCB9IGZyb20gJ0Bub2QvZW52aXJvbm1lbnQnO1xuXG5sZXRcbiAgY29uZmlnQ29uc29sZSA9IChuZXcgRW52aXJvbm1lbnQoe1xuICAgIHJvb3QgOiBwYXRoLnJlc29sdmUoJy4nKVxuICB9KSkuY29uZmlnLFxuICBjb25maWdSb290ID0gKG5ldyBFbnZpcm9ubWVudCgpKS5jb25maWc7XG5cbmV4cG9ydCBsZXQgZW52ID0gT2JqZWN0LmFzc2lnbih7XG4gIGNvbnNvbGUgOiB7fVxufSwgY29uZmlnUm9vdCwgY29uZmlnQ29uc29sZSk7XG5cbmVudi5jb25zb2xlID0gT2JqZWN0LmFzc2lnbihcbiAgZW52LmNvbnNvbGUsIGNvbmZpZ1Jvb3QuY29uc29sZSwgY29uZmlnQ29uc29sZS5jb25zb2xlXG4pO1xuXG5leHBvcnQgZGVmYXVsdCBlbnY7XG4iXX0=

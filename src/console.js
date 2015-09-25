@@ -2,7 +2,7 @@ import 'source-map-support/register';
 import os from 'os';
 import json from 'circular-json';
 import highlighter from 'cardinal';
-import { config } from './config';
+import { env } from './env';
 import { standart } from './standart';
 import autobind from 'autobind-decorator';
 import { param, returns, Optional as optional, AnyOf as anyOf }
@@ -26,7 +26,7 @@ export class Console {
     highlight  : highlighter.highlight.bind(highlighter),
     stackDepth : 7,
     standart,
-    config,
+    env,
     json
   };
 
@@ -42,7 +42,7 @@ export class Console {
     standart   : optional(Object),
     enabled    : optional(Boolean),
     logTypes   : optional(Boolean),
-    config     : optional(Object),
+    env     : optional(Object),
     highlight  : optional(Object),
     json       : optional(Object),
     stackDepth : optional(Number)
@@ -203,17 +203,17 @@ export class Console {
     });
     this.options = options;
 
-    if (this.options.config.console) {
-      if (typeof this.options.config.console.level !== 'undefined') {
-        this.level = this.options.config.console.level;
+    if (this.options.env.console) {
+      if (typeof this.options.env.console.level !== 'undefined') {
+        this.level = this.options.env.console.level;
       }
-      if (typeof this.options.config.console.enabled === 'booelan') {
-        this.options.enabled = this.options.config.console.enabled;
+      if (typeof this.options.env.console.enabled === 'booelan') {
+        this.options.enabled = this.options.env.console.enabled;
       }
     }
 
-    if (typeof this.options.config.silent === 'boolean') {
-      this.options.enabled = this.options.config.silent ? false : true;
+    if (typeof this.options.env.silent === 'boolean') {
+      this.options.enabled = this.options.env.silent ? false : true;
     }
 
     this.info(`${this.constructor.name}: Initialized.`);
