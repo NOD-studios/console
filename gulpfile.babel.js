@@ -2,7 +2,6 @@ import fs from 'fs';
 import del from 'del';
 import path from 'path';
 import gulp from 'gulp';
-import process from 'process';
 import assign from 'object.assign';
 import vinylPaths from 'vinyl-paths';
 import runSequence from 'run-sequence';
