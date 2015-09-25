@@ -1,18 +1,25 @@
-import path from 'path';
-import { Environment } from '@nod/environment';
+'use strict';
 
-let
-  configConsole = (new Environment({
-    root : path.resolve('.')
-  })).config,
-  configRoot = (new Environment()).config;
+var _Object$assign = require('babel-runtime/core-js/object/assign')['default'];
 
-export let env = Object.assign({
-  console : {}
-}, configRoot, configConsole);
+var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
 
-env.console = Object.assign(
-  env.console, configRoot.console, configConsole.console
-);
+exports.__esModule = true;
 
-export default env;
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _nodEnvironment = require('@nod/environment');
+
+var configConsole = new _nodEnvironment.Environment({
+  root: _path2['default'].resolve('.')
+}).config,
+    configRoot = new _nodEnvironment.Environment().config;
+
+var env = _Object$assign(configConsole, configRoot);
+exports.env = env;
+env.console = _Object$assign(configConsole.console, configRoot.console);
+
+exports['default'] = env;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mdXJrYW50dW5hbGkvU2l0ZXMvX1NhbmRib3gvTk9EL2NvbnNvbGUvc3JjL2Vudi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztvQkFBaUIsTUFBTTs7Ozs4QkFDSyxrQkFBa0I7O0FBRTlDLElBQ0UsYUFBYSxHQUFHLEFBQUMsZ0NBQWdCO0FBQy9CLE1BQUksRUFBRyxrQkFBSyxPQUFPLENBQUMsR0FBRyxDQUFDO0NBQ3pCLENBQUMsQ0FBRSxNQUFNO0lBQ1YsVUFBVSxHQUFHLEFBQUMsaUNBQWlCLENBQUUsTUFBTSxDQUFDOztBQUVuQyxJQUFJLEdBQUcsR0FBRyxlQUFjLGFBQWEsRUFBRSxVQUFVLENBQUMsQ0FBQzs7QUFDMUQsR0FBRyxDQUFDLE9BQU8sR0FBRyxlQUFjLGFBQWEsQ0FBQyxPQUFPLEVBQUUsVUFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDOztxQkFFeEQsR0FBRyIsImZpbGUiOiIvVXNlcnMvZnVya2FudHVuYWxpL1NpdGVzL19TYW5kYm94L05PRC9jb25zb2xlL3NyYy9lbnYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcGF0aCBmcm9tICdwYXRoJztcbmltcG9ydCB7IEVudmlyb25tZW50IH0gZnJvbSAnQG5vZC9lbnZpcm9ubWVudCc7XG5cbmxldFxuICBjb25maWdDb25zb2xlID0gKG5ldyBFbnZpcm9ubWVudCh7XG4gICAgcm9vdCA6IHBhdGgucmVzb2x2ZSgnLicpXG4gIH0pKS5jb25maWcsXG4gIGNvbmZpZ1Jvb3QgPSAobmV3IEVudmlyb25tZW50KCkpLmNvbmZpZztcblxuZXhwb3J0IGxldCBlbnYgPSBPYmplY3QuYXNzaWduKGNvbmZpZ0NvbnNvbGUsIGNvbmZpZ1Jvb3QpO1xuZW52LmNvbnNvbGUgPSBPYmplY3QuYXNzaWduKGNvbmZpZ0NvbnNvbGUuY29uc29sZSwgY29uZmlnUm9vdC5jb25zb2xlKTtcblxuZXhwb3J0IGRlZmF1bHQgZW52O1xuIl19
