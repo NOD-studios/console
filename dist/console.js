@@ -1,41 +1,14 @@
 import 'source-map-support/register';
-import highlighter from 'cardinal';
-import appRootPath from 'app-root-path';
-import json from 'circular-json';
-import path from 'path';
 import os from 'os';
+import json from 'circular-json';
+import highlighter from 'cardinal';
+import { config } from './config';
+import { standart } from './standart';
+import autobind from 'autobind-decorator';
 import { param, returns, Optional as optional, AnyOf as anyOf }
   from 'decorate-this';
-import autobind from 'autobind-decorator';
-import { Environment } from '@nod/environment';
-import _console from 'console';
 
 const PRIVATE = Symbol('PRIVATE');
-
-let config = (new Environment({
-  root : path.resolve('.')
-})).config || {
-  console : {}
-};
-
-let standart = {
-  output : () => {},
-  error  : () => {}
-};
-
-if (console) {
-  Object.assign(standart, {
-    output : console.log.bind(console),
-    error : console.error.bind(console)
-  });
-}
-
-if (process) {
-  Object.assign(standart, {
-    output : process.stdout.write.bind(process.stdout),
-    error : process.stderr.write.bind(process.stdout)
-  });
-}
 
 export class Console {
   levels = {
@@ -56,7 +29,6 @@ export class Console {
     config,
     json
   };
-
 
   get options() {
     return this[PRIVATE].options;
@@ -80,32 +52,6 @@ export class Console {
     options = Object.assign(this[PRIVATE].options, this.defaults, options);
     this.level = options.level;
     return options;
-  }
-
-  constructor(options = {}) {
-    Object.defineProperty(this, PRIVATE, {
-      enumerable : false,
-      value      : {
-        options : {},
-        level   : null
-      }
-    });
-    this.options = options;
-
-    if (this.options.config.console) {
-      if (typeof this.options.config.console.level !== 'undefined') {
-        this.level = this.options.config.console.level;
-      }
-      if (typeof this.options.config.console.enabled === 'booelan') {
-        this.options.enabled = this.options.config.console.enabled;
-      }
-    }
-
-    if (typeof this.options.config.silent === 'boolean') {
-      this.options.enabled = this.options.config.silent ? false : true;
-    }
-
-    this.info(`${this.constructor.name}: Initialized.`);
   }
 
   @returns(Object)
@@ -246,8 +192,30 @@ export class Console {
   error(...params) {
     return this.standart('error', 'error', ...params);
   }
-}
 
-let console = new Console();
-export let { error, warn, info, log, debug } = console;
-export default console;
+  constructor(options = {}) {
+    Object.defineProperty(this, PRIVATE, {
+      enumerable : false,
+      value      : {
+        options : {},
+        level   : null
+      }
+    });
+    this.options = options;
+
+    if (this.options.config.console) {
+      if (typeof this.options.config.console.level !== 'undefined') {
+        this.level = this.options.config.console.level;
+      }
+      if (typeof this.options.config.console.enabled === 'booelan') {
+        this.options.enabled = this.options.config.console.enabled;
+      }
+    }
+
+    if (typeof this.options.config.silent === 'boolean') {
+      this.options.enabled = this.options.config.silent ? false : true;
+    }
+
+    this.info(`${this.constructor.name}: Initialized.`);
+  }
+}

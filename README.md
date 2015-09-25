@@ -4,9 +4,10 @@ A javascript syntax highlighted console replacement that outputs JSON.
 Supports ES5, ES7, CommonJS, System, ES6 modules, and AMD.
 Works in node.js also should(?) work in browser.
 
-[![Join the chat][gitter-image]][gitter-url]
 [![GitHub tag][tag-image]][tag-url]
+[![Build status][build-image]][build-url]
 [![Dependency Status][david-image]][david-url]
+[![Join the chat][gitter-image]][gitter-url]
 
 # Usage:
 
@@ -18,14 +19,14 @@ npm install --save @nod/console
 ## Examples:
 
 ```javascript
-import { log, error } from '@nod/console';
+import { log, error } from '@nod/console/instance';
 
 log('Simple log');
 error('Simple error');
 ```
 
 ```javascript
-import { console } from '@nod/console';
+import { console } from '@nod/console/instance';
 
 let { debug, info } = console;
 
@@ -35,10 +36,11 @@ console.warn('This is a warning human !');
 ```
 
 ```javascript
+//for your own instance configuration
 import { Console } from '@nod/console';
 
 let console = new Console({
-  level : 'debug',
+  level     : 'debug',
   standarts : {
     output : console.log.bind(console)
   }
@@ -48,14 +50,14 @@ console.debug(`Debugging the ${console.constructor.name}:`, console);
 ```
 
 ```javascript
-require('@nod/console/dist/amd/js/index', function(console) {
-  console.info('AMD and requirejs is so 2014.');
+require('@nod/console/dist/amd/instance', function(console) {
+  console.info('RequireJS is so 2013.');
 });
 ```
 
 ```javascript
-var console = require('@nod/console/commonjs/js/index');
-console.info('ES5 is boring.');
+var console = require('@nod/console/commonjs/instance');
+console.info('ES5 is boring but works.');
 ```
 
 ## Options:
@@ -85,8 +87,7 @@ gulp
 ```
 or
 ```bash
-npm run build
-npm run watch
+npm run default
 ```
 Please check available gulp tasks with:
 ```bash
@@ -118,3 +119,5 @@ by [NOD studios](http://nod.st)
 [mail-url]: mailto:hey@nod.st
 [tag-image]: https://img.shields.io/github/tag/NOD-studios/console.svg
 [tag-url]: https://github.com/NOD-studios/console/tags
+[build-image]: https://travis-ci.org/NOD-studios/console.svg
+[build-url]: https://travis-ci.org/NOD-studios/console
