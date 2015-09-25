@@ -1,6 +1,6 @@
 {
   "name": "@nod/console",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A syntax highlighted console replacement that outputs JSON with ES6/ES7 support.",
   "main": "index.js",
   "dependencies": {
@@ -81,6 +81,6 @@
     "default": "gulp default"
   },
   "engines": {
-    "npm" : ">=1.5.0"
+    "npm": ">=1.5.0"
   }
 }
