@@ -1,7 +1,17 @@
 sudo: false
 language: node_js
+before_install:
+  - npm install -g npm@'>=1.5.0'
 node_js:
-  - '0.11'
-  - '0.12'
-  - 'iojs'
-  - '4.0'
+- '0.10'
+- '0.11'
+- '0.12'
+- iojs
+- '4.0'
+deploy:
+  provider: npm
+  email: hey@nod.st
+  api_key:
+    secure: mxSpcY+V2kRhe37MbYHMlCyoQxc/yuH21C+KHizNUhXD5Y4/usTk4wKCvyYbk+B7/T7earSefnF3ZI2c6cIOLDwF5pWiyAVVkc5SYZgc6q5XZeAtSDumn21uppdPoLpgArkmUNjH3PD1tsTsnuLne5eUGNj/BjzpgmUogXVQjQzIulZEheqSKeMkHX58fcT977cNmSQkVmiLFh7owzfbRi89hnBSEFfWopuZ5RC5TkAfTrmXg3P/XcLDd9pZREXCbQ1hRDgm6IB2xSrMFuqtt32V6K0VTC/1o6xx6r2RPH2zsgIbGliatqh364cBnQR7GMCLO+a+LFU8ZE1VKhp1x/F4ANxPQDS0Z+AVAVVy+36H58Ec3fr7nElgGgirMshzAscyk9AqUXPH6nXwUeLDGZMWkwUNb2vhDxaCRFXkyfxZ2dbCXQCThDG7fJ42i/D/O/c4YV/e7ZK0dkxM7iusw2a94PejWETkt123N5QXUNT2svypiLqMDxHcisOxhm/MCrS4Jy3NPvkWAzPGOEhGfFa3IqNyp+zLZhio2TMPsdeED5ODdSGcOO+Ra9HmvL0CwdXL2SU7jcCxsICFWf2GieBYdrNoRUpX3LzCE5i2TMzivFwlr33D94K8vGiurdb1NroOLH+ReJduf59Rce80XQBXpCaOAYLppYmvijKYNvk=
+  on:
+    tags: true

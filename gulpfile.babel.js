@@ -160,9 +160,7 @@ gulp.task('preversion', ['build'], () => {
   return exec('git add -A');
 });
 
-gulp.task('postversion', () => {
-  return exec('npm publish');
-});
+gulp.task('postversion', ['postpublish']);
 
 gulp.task('prepublish', () => {
   return exec('npm run build && git add -A');
