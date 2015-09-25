@@ -1,6 +1,6 @@
 {
   "name": "@nod/console",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A syntax highlighted console replacement that outputs JSON with ES6/ES7 support.",
   "main": "index.js",
   "dependencies": {
