@@ -2,15 +2,13 @@ import 'source-map-support/register';
 import os from 'os';
 import json from 'circular-json';
 import highlighter from 'cardinal';
-import { env } from './env';
 import { standart } from './standart';
 import autobind from 'autobind-decorator';
+import { Base } from '@nod/base';
 import { param, returns, Optional as optional, AnyOf as anyOf }
   from 'decorate-this';
 
-const PRIVATE = Symbol('PRIVATE');
-
-export class Console {
+export class Console extends Base {
   levels = {
     error : 1,
     warn  : 2,
@@ -26,30 +24,20 @@ export class Console {
     highlight  : highlighter.highlight.bind(highlighter),
     stackDepth : 7,
     standart,
-    env,
     json
   };
-
-  get options() {
-    return this[PRIVATE].options;
-  }
-
-  set options(...params) {
-    return this.setOptions(...params);
-  }
 
   @param(optional({
     standart   : optional(Object),
     enabled    : optional(Boolean),
     logTypes   : optional(Boolean),
-    env     : optional(Object),
     highlight  : optional(Object),
     json       : optional(Object),
     stackDepth : optional(Number)
   }))
   @returns(Object)
   setOptions(options = {}) {
-    options = Object.assign(this[PRIVATE].options, this.defaults, options);
+    super.setOptions(options);
     this.level = options.level;
     return options;
   }
@@ -86,8 +74,8 @@ export class Console {
   @param(Number)
   @returns(String)
   stack(stackDepth = this.options.stackDepth) {
-    var stack = new Error().stack;
-    return stack
+    return new Error()
+      .stack
       .split(os.EOL)[stackDepth]
         .replace("\t", '')
         .trim();
@@ -194,28 +182,21 @@ export class Console {
   }
 
   constructor(options = {}) {
-    Object.defineProperty(this, PRIVATE, {
-      enumerable : false,
-      value      : {
-        options : {},
-        level   : null
-      }
-    });
-    this.options = options;
+    super(options = {});
 
     if (this.options.env.console) {
       if (typeof this.options.env.console.level !== 'undefined') {
         this.level = this.options.env.console.level;
       }
-      if (typeof this.options.env.console.enabled === 'booelan') {
+      if (typeof this.options.env.console.enabled === 'boolean') {
         this.options.enabled = this.options.env.console.enabled;
       }
     }
 
-    if (typeof this.options.env.silent === 'boolean') {
-      this.options.enabled = this.options.env.silent ? false : true;
+    if (typeof this.options.silent === 'boolean') {
+      this.options.enabled = this.options.silent ? false : true;
     }
 
-    this.info(`${this.constructor.name}: Initialized.`);
+    return this;
   }
 }

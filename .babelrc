@@ -1,7 +1,4 @@
 {
-  "stage"        : 0,
-  "sourceMaps"   : "inline",
-  "optional"     : [
-    "runtime"
-  ]
+  "presets": ["es2015", "stage-0"],
+  "plugins" : ["babel-plugin-transform-decorators-legacy"]
 }
