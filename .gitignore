@@ -4,6 +4,9 @@
 
 # Created by https://www.gitignore.io/api/node,osx,linux,windows
 
+### Webstorm ###
+.idea
+
 ### Node ###
 # Logs
 logs
