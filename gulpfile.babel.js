@@ -173,17 +173,17 @@ gulp.task('run-instance', gulp.series('build', () => {
 }));
 
 gulp.task('watch', () => {
-  return gulp
-    .src(paths.js)
+  gulp.src(paths.js)
     .pipe($.debug({
       title : 'Started to watching files'
-    }))
-    .pipe($.watch(paths.js, () => {
-      gulp.series('build');
-    }))
-    .pipe($.debug({
-      title : 'changed files'
     }));
+
+  return gulp.watch([
+    paths.js
+  ], gulp.series(
+    'build',
+    'run-instance'
+  ));
 });
 
 gulp.task('preversion', gulp.series('build', () => {

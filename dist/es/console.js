@@ -8,38 +8,21 @@ import { Base } from '@nod/base';
 import { param, returns, Optional as optional, AnyOf as anyOf }
   from 'decorate-this';
 
+const PROTECTED = Symbol('PROTECTED');
+
 export class Console extends Base {
-  levels = {
-    error : 1,
-    warn  : 2,
-    info  : 3,
-    log   : 4,
-    debug : 5
-  };
-
-  defaults = {
-    enabled    : true,
-    logTypes   : false,
-    level      : 'warn',
-    highlight  : highlighter.highlight.bind(highlighter),
-    stackDepth : 7,
-    standart,
-    json
-  };
-
   @param(optional({
     standart   : optional(Object),
     enabled    : optional(Boolean),
     logTypes   : optional(Boolean),
     highlight  : optional(Object),
     json       : optional(Object),
-    stackDepth : optional(Number)
+    stackDepth : optional(Number),
+    levels     : optional(Object)
   }))
   @returns(Object)
   setOptions(options = {}) {
-    super.setOptions(options);
-    this.level = options.level;
-    return options;
+    return super.setOptions(options);
   }
 
   @returns(Object)
@@ -87,11 +70,11 @@ export class Console extends Base {
 
   @returns(String)
   getLevel() {
-    let value = this[PRIVATE].level,
+    let value = this[PROTECTED].level,
       property;
-    for(property in this.levels) {
-      if(this.levels.hasOwnProperty(property)) {
-        if(this.levels[property] === value) {
+    for(property in this.options.levels) {
+      if(this.options.levels.hasOwnProperty(property)) {
+        if(this.options.levels[property] === value) {
           return property;
         }
       }
@@ -107,14 +90,14 @@ export class Console extends Base {
   @param(anyOf(String, Number))
   setLevel(level = this.level) {
     if (typeof level === 'string') {
-      if (this.levels[level]) {
-        return this[PRIVATE].level = this.levels[level];
+      if (this.options.levels[level]) {
+        return this[PROTECTED].level = this.options.levels[level];
       }
     }
     if (typeof level === 'number') {
       level = this.getLevel();
       if (level !== false) {
-        this[PRIVATE].level = level;
+        this[PROTECTED].level = level;
       }
     }
     return false;
@@ -133,7 +116,7 @@ export class Console extends Base {
   @autobind
   @returns(Boolean)
   checkLevel(level = this.level) {
-    if (this.levels[level] <= this.levels[this.level]) {
+    if (this.options.levels[level] <= this.options.levels[this.level]) {
       return true;
     }
     return false;
@@ -182,21 +165,36 @@ export class Console extends Base {
   }
 
   constructor(options = {}) {
-    super(options = {});
 
-    if (this.options.env.console) {
-      if (typeof this.options.env.console.level !== 'undefined') {
-        this.level = this.options.env.console.level;
+    super(options, {
+      enabled    : true,
+      logTypes   : false,
+      level      : 'warn',
+      highlight  : highlighter.highlight.bind(highlighter),
+      stackDepth : 7,
+      levels     : {
+        error : 1,
+        warn  : 2,
+        info  : 3,
+        log   : 4,
+        debug : 5
+      },
+      standart,
+      json
+    });
+
+    Object.defineProperty(this, PROTECTED, {
+      enumerable : false,
+      value : {
+        level : 0
       }
-      if (typeof this.options.env.console.enabled === 'boolean') {
-        this.options.enabled = this.options.env.console.enabled;
-      }
-    }
+    });
+
+    this.level = this.options.level;
+
 
     if (typeof this.options.silent === 'boolean') {
       this.options.enabled = this.options.silent ? false : true;
     }
-
-    return this;
   }
 }
