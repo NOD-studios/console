@@ -1,4 +1,5 @@
 import 'source-map-support/register';
+import "babel-polyfill";
 import os from 'os';
 import json from 'circular-json';
 import highlighter from 'cardinal';

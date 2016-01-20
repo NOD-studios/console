@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['console'], function (_export, _context) {
+System.register(['source-map-support/register', 'babel-polyfill', 'console'], function (_export, _context) {
   var console, standart;
   return {
-    setters: [function (_console) {
+    setters: [function (_sourceMapSupportRegister) {}, function (_babelPolyfill) {}, function (_console) {
       console = _console.default;
     }],
     execute: function () {
