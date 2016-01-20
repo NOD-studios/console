@@ -186,12 +186,9 @@ export class Console extends Base {
     Object.defineProperty(this, PROTECTED, {
       enumerable : false,
       value : {
-        level : 0
+        level : this.options.level
       }
     });
-
-    this.level = this.options.level;
-
 
     if (typeof this.options.silent === 'boolean') {
       this.options.enabled = this.options.silent ? false : true;
