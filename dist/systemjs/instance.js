@@ -1,38 +1,40 @@
-'use strict';
-
-System.register(['source-map-support/register', 'babel-polyfill', './console'], function (_export, _context) {
-  var Console, console, error, warn, info, log, debug;
+System.register([], function (_export, _context) {
   return {
-    setters: [function (_sourceMapSupportRegister) {}, function (_babelPolyfill) {}, function (_console) {
-      Console = _console.Console;
-    }],
+    setters: [],
     execute: function () {
-      _export('console', console = new Console());
+      (function (global, factory) {
+        if (typeof define === "function" && define.amd) {
+          define(['exports', './console', 'source-map-support/register', 'babel-polyfill'], factory);
+        } else if (typeof exports !== "undefined") {
+          factory(exports, require('./console'), require('source-map-support/register'), require('babel-polyfill'));
+        } else {
+          var mod = {
+            exports: {}
+          };
+          factory(mod.exports, global.console, global.register, global.babelPolyfill);
+          global.instance = mod.exports;
+        }
+      })(this, function (exports, _console) {
+        'use strict';
 
-      _export('console', console);
-
-      _export('error', error = console.error);
-
-      _export('warn', warn = console.warn);
-
-      _export('info', info = console.info);
-
-      _export('log', log = console.log);
-
-      _export('debug', debug = console.debug);
-
-      _export('error', error);
-
-      _export('warn', warn);
-
-      _export('info', info);
-
-      _export('log', log);
-
-      _export('debug', debug);
-
-      _export('default', console);
+        Object.defineProperty(exports, "__esModule", {
+          value: true
+        });
+        exports.debug = exports.log = exports.info = exports.warn = exports.error = exports.console = undefined;
+        var console = exports.console = new _console.Console();
+        var error = console.error;
+        var warn = console.warn;
+        var info = console.info;
+        var log = console.log;
+        var debug = console.debug;
+        exports.error = error;
+        exports.warn = warn;
+        exports.info = info;
+        exports.log = log;
+        exports.debug = debug;
+        exports.default = console;
+      });
     }
   };
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJpbnN0YW5jZS5qcyIsInNvdXJjZXNDb250ZW50IjpbXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc3RhbmNlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O1lBSVcsT0FBTyxXQUFQLE9BQU8sR0FBRyxzQkFBYTs7Ozs7Ozs7Ozs7MEJBRW5CLE9BQU8iLCJmaWxlIjoiaW5zdGFuY2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJ3NvdXJjZS1tYXAtc3VwcG9ydC9yZWdpc3Rlcic7XG5pbXBvcnQgXCJiYWJlbC1wb2x5ZmlsbFwiO1xuaW1wb3J0IHsgQ29uc29sZSB9IGZyb20gJy4vY29uc29sZSc7XG5cbmV4cG9ydCBsZXQgY29uc29sZSA9IG5ldyBDb25zb2xlKCk7XG5leHBvcnQgbGV0IHsgZXJyb3IsIHdhcm4sIGluZm8sIGxvZywgZGVidWcgfSA9IGNvbnNvbGU7XG5leHBvcnQgZGVmYXVsdCBjb25zb2xlO1xuIl0sInNvdXJjZVJvb3QiOiIvc291cmNlLyJ9
