@@ -1,87 +1,71 @@
 # @nod/console
-A javascript syntax highlighted console replacement that outputs JSON.
+A javascript/es syntax highlighted super configurable console replacement that outputs JSON.
 
 Supports ES5, ES7, CommonJS, System, ES6 modules, and AMD.
-Works in node.js also should(?) work in browser.
+Works in node.js also should (not tested yet) work in browser.
 
 [![GitHub tag][tag-image]][tag-url]
 [![Build status][build-image]][build-url]
 [![Dependency Status][david-image]][david-url]
 [![Join the chat][gitter-image]][gitter-url]
 
-# Usage:
+##Usage:
 
-## Installation:
+### Installation:
 ```
 npm install --save @nod/console
 ```
 
-## Examples:
+### Examples:
 
 ```javascript
-import { log, error } from '@nod/console/instance';
+import { Console, Configuration as ConsoleConfig } from '@nod/console';
+
+let console = new Console(new ConsoleConfig());
+let { error, warn, info, log, debug } = console;
 
 log('Simple log');
-error('Simple error');
-```
-
-```javascript
-import { console } from '@nod/console/instance';
-
-let { debug, info } = console;
-
 error('DOH');
 info('Too much info');
 console.warn('This is a warning human !');
 ```
 
+#### ES5 AMD
 ```javascript
-//for your own instance configuration
-import { Console } from '@nod/console';
-
-let console = new Console({
-  level     : 'debug',
-  standarts : {
-    output : console.log.bind(console)
-  }
-});
-
-console.debug(`Debugging the ${console.constructor.name}:`, console);
-```
-
-```javascript
-require('@nod/console/dist/amd/instance', function(console) {
+require('@nod/console', function(nodConsole) {
+  var console = new nodConsole.Console();
   console.info('RequireJS is so 2013.');
 });
 ```
 
+#### ES5 CommonJS
 ```javascript
-var console = require('@nod/console/commonjs/instance');
-console.info('ES5 is boring but works.');
+var nodConsole = require('@nod/console');
+var console = new nodConsole.Console();
+console.info('ES5 is boring but it also works.');
 ```
 
-## Options:
+#### Configuration
 ```javascript
-console.options = { // this will auto merge options
-  enabled   : true, // disable and enable
-  logTypes  : false, // log variable types, ~var_dump
+import { Console, Configuration } from '@nod/console';
+
+let options = new Configuration({ // this will auto merge options
+  enabled   : true, // disable and enable switch
+  logTypes  : false, // log also variable types
   level     : 'debug', // debug < log < info < warn < error
-  highlight : , // syntax highlighter function
-  config    : {  // env configs
-    console : {
-      silent : false,
-      level : null
-    }
-  },
-  json      : () => {}, // JSON.stringify function
-  standart  : {
-    output : () => {}, // stdout function
-    error  : () => {}, // stderr function
-  }
+});
+
+let standart = {
+  output : console.log.bind(console),
+  error : console.error.bind(console)
 };
+
+let console = new Console(options, standart);
 ```
 
-## Build and develop:
+All methods have strict type checking please check source code.
+
+### Build and develop:
 ```bash
 gulp
 ```
@@ -94,14 +78,12 @@ Please check available gulp tasks with:
 gulp -T
 ```
 
-## API
-All methods have strict type checking please check source code.
-
-# ToDo:
+## TODO:
 - Gulp tasks as another dependency
-- More detailed docs
+- Maybe add stream support
+- Add inline docs
 
-# Contact:
+## Contact:
 [![Send e-mail][mail-image]][mail-url]
 [![Join the chat][gitter-image]][gitter-url]
 

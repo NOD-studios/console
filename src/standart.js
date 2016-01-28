@@ -1,6 +1,4 @@
-import 'source-map-support/register';
-import "babel-polyfill";
-import console from 'console';
+import console from 'console'
 
 export let standart = {
   output : () => {},

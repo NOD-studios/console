@@ -1,30 +1,14 @@
-import 'source-map-support/register';
-import "babel-polyfill";
 import os from 'os';
-import json from 'circular-json';
+import circularJson from 'circular-json';
 import highlighter from 'cardinal';
 import { standart } from './standart';
 import autobind from 'autobind-decorator';
-import { Base } from '@nod/base';
-import { param, returns, Optional as optional, AnyOf as anyOf }
-  from 'decorate-this';
+import { Configuration } from './configuration';
+import { param, returns, Optional as optional, AnyOf as anyOf } from 'decorate-this';
 
 const PROTECTED = Symbol('PROTECTED');
 
-export class Console extends Base {
-  @param(optional({
-    standart   : optional(Object),
-    enabled    : optional(Boolean),
-    logTypes   : optional(Boolean),
-    highlight  : optional(Object),
-    json       : optional(Object),
-    stackDepth : optional(Number),
-    levels     : optional(Object)
-  }))
-  @returns(Object)
-  setOptions(options = {}) {
-    return super.setOptions(options);
-  }
+export class Console {
 
   @returns(Object)
   typify(param = undefined) {
@@ -41,14 +25,14 @@ export class Console extends Base {
        return this.typify(param);
      });
     }
-    return this.options.json.stringify(params, null, 2);
+    return this.json.stringify(params, null, 2);
   }
 
   @param(String)
   @returns(anyOf(String, Boolean))
-  highlight(params = '') {
+  safeHighlight(params = '') {
     try {
-      return this.options.highlight(params);
+      return this.highlight(params);
     } catch (error) {
       this.standart('error', 'error', error);
       return false;
@@ -89,7 +73,7 @@ export class Console extends Base {
 
   @returns(anyOf(Number, Boolean))
   @param(anyOf(String, Number))
-  setLevel(level = this.level) {
+  setLevel(level = this.optiopns.level) {
     if (typeof level === 'string') {
       if (this.options.levels[level]) {
         return this[PROTECTED].level = this.options.levels[level];
@@ -134,10 +118,10 @@ export class Console extends Base {
     }
 
     params = this.stringify(...params);
-    params = this.highlight(params);
+    params = this.safeHighlight(params);
     params = this.format(this.stack(), level, params);
 
-    return this.options.standart[method](params);
+    return this.standartIO[method](params);
   }
 
   @autobind
@@ -165,31 +149,21 @@ export class Console extends Base {
     return this.standart('error', 'error', ...params);
   }
 
-  constructor(options = {}) {
-
-    super(options, {
-      enabled    : true,
-      logTypes   : false,
-      level      : 'warn',
-      highlight  : highlighter.highlight.bind(highlighter),
-      stackDepth : 7,
-      levels     : {
-        error : 1,
-        warn  : 2,
-        info  : 3,
-        log   : 4,
-        debug : 5
-      },
-      standart,
-      json
-    });
+  constructor(
+    options = new Configuration(),
+    standartIO = standart,
+    json = circularJson,
+    highlight = highlighter.highlight.bind(highlighter)
+  ) {
 
     Object.defineProperty(this, PROTECTED, {
       enumerable : false,
       value : {
-        level : this.options.level
+        level : options.level
       }
     });
+
+    Object.assign(this, { options, standartIO, json, highlight });
 
     if (typeof this.options.silent === 'boolean') {
       this.options.enabled = this.options.silent ? false : true;
