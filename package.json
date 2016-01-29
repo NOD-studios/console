@@ -1,6 +1,6 @@
 {
   "name": "@nod/console",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "A console that can outputs syntax highlighted JSON with circular reference support",
   "main": "dist/commonjs/index.js",
   "dependencies": {
