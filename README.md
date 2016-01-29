@@ -1,5 +1,7 @@
 # @nod/console
-A javascript/es syntax highlighted super configurable console replacement that outputs JSON.
+A console that can outputs syntax highlighted JSON with circular reference support
+
+It also supports outputting circular references.
 
 Supports ES5, ES7, CommonJS, System, ES6 modules, and AMD.
 Works in node.js also should (not tested yet) work in browser.

@@ -1,12 +1,11 @@
 'use strict';
 
-System.register(['./console', './configuration'], function (_export, _context) {
+System.register(['./index'], function (_export, _context) {
   var Console, Configuration, console, error, warn, info, log, debug;
   return {
-    setters: [function (_console) {
-      Console = _console.Console;
-    }, function (_configuration) {
-      Configuration = _configuration.Configuration;
+    setters: [function (_index) {
+      Console = _index.Console;
+      Configuration = _index.Configuration;
     }],
     execute: function () {
       _export('console', console = new Console(new Configuration()));

@@ -1,8 +1,4 @@
-import 'source-map-support/register';
-import 'babel-polyfill';
-
-export { Merger} from './merger';
-export { Console } from './console';
+import 'babel-polyfill'
+import 'source-map-support/register'
 export { Configuration } from './configuration';
-
-export default Console;
+export { Console } from './console';

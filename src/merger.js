@@ -14,7 +14,7 @@ export class Merger extends BaseMerger {
   }))
   @returns(Object)
   setOptions(options = {}) {
-    return super.setOptions;
+    return super.setOptions(options);
   }
 
 }

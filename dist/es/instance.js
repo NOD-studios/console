@@ -1,5 +1,4 @@
-import { Console } from './console';
-import { Configuration } from './configuration';
+import { Console, Configuration } from './index';
 
 export let console = new Console(new Configuration());
 export let { error, warn, info, log, debug } = console;
